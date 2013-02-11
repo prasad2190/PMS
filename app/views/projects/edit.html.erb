@@ -1,0 +1,23 @@
+<%= form_for(@project) do |f| %>
+<% if @project.errors.present? %>
+<ul>
+<%@project.errors.full_messages.each do |message| %>
+<li><%= message%></li>
+<% end %>
+</ul>
+<% end %>
+    <%= f.label name="Enter Name"%>
+	<%= f.text_field :name %>
+	<br>
+	<%= f.label name="Enter description"%>
+	<%= f.text_field :description %>
+	<br>
+	<%= f.label name="Enter start date"%>
+	<%= f.date_select :start_date %>
+	<br>
+	<%= f.label name="Enter end date"%>
+	<%= f.date_select :end_date %>
+	<br>
+	
+	<%=	f.submit "Save" %>
+<% end %>

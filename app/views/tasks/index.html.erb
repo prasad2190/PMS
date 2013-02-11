@@ -1,0 +1,34 @@
+<h1> Task Listing</h1>
+<table border=1 class="listing">
+	
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>name</th>
+			<th>description</th>
+			<th>start_date</th>
+			<th>end_date</th>
+			
+		</tr>		
+	</thead>
+	<tbody>
+		<% @tasks.each do |task| %>
+			<tr>
+				<td><%= task.id%></td>
+				<td><%= task.name%></td>
+				<td><%= task.description%></td>
+				<td><%= task.start_date%></td>
+				<td><%= task.end_date%></td>
+				<td><%=link_to "show",task_path(task) %></td>
+				<td><%=link_to "edit",edit_task_path(task) %></td>
+				<td><%=link_to "Delete",task_path(task),:method =>'delete' %></td>
+
+			</tr>
+			
+		<% end %>
+		<%=link_to "New Task",new_task_path %>
+
+
+
+	</tbody>
+</table>			
