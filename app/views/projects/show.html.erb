@@ -1,24 +1,21 @@
-<p>
-	ID
-	<%= @project.id %>
-</p>
-<br>
-<p>
-	Name
-	<%= @project.name %>
-</p>
-<br>
-<p>
-	Description
-	<%= @project.description %>
-</p>
-<br>
-<p>
-	start Date
-	<%=@project.start_date %>
-</p>
-<br>
-<p>
-	End Date
-	<%=@project.end_date %>
-</p>
+<table class="listing">
+	<tr><td>ID</td><td><%= @project.id %></td></tr>
+
+<tr><td>Name</td><td><%= @project.name %></td></tr>
+
+<tr><td>Description</td><td><%= @project.description %></td></tr>
+
+<tr><td>start Date</td><td><%=@project.start_date %></td></tr>
+
+<tr><td>End Date</td><td><%=@project.end_date %></td></tr>
+<tr><td>Status</td><td><%=@project.status %></td></tr>
+
+<tr><td colspan='2'>User</td></tr>
+<tr><td colspan='2'>
+	<ul>
+	<%@project.users.each do |u| %>
+	<li><%=u.name%></li>
+	<%end%>
+	<ul></td>
+</tr>
+	</table> 

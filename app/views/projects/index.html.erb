@@ -8,6 +8,7 @@
 			<th>description</th>
 			<th>start_date</th>
 			<th>end_date</th>
+			<th>status</th>
 			
 		</tr>		
 	</thead>
@@ -19,9 +20,18 @@
 				<td><%= project.description%></td>
 				<td><%= project.start_date%></td>
 				<td><%= project.end_date%></td>
+
+
+				<td>
+					<%= project.status%>
+					<% if project.status != "finish" %>
+					<%=link_to "Finish Task",finish_task_project_path(project) %>
+					<% end %>
+				</td>	
 				<td><%=link_to "show",project_path(project) %></td>
 				<td><%=link_to "edit",edit_project_path(project) %></td>
 				<td><%=link_to "Delete",project_path(project),:method=>'delete' %></td>
+				<td><%=link_to "Milestone",project_milestones_path(project) %></td>
 
 			</tr>
 			

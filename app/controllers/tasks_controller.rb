@@ -1,22 +1,25 @@
 class TasksController < ApplicationController
+	before_filter :load_milestone
 	def index 
-		@tasks = Task.all
+		@tasks = @milestone.tasks
+		
 	end
 
 	def new
-		@task = Task.new
+		@task = @milestone.tasks.new
+
 	end
 	
 	def show
-		@task = Task.find(params[:id])
+		@task = @milestone.tasks.find(params[:id])
 
 	end
 
 	def create
-		@task = Task.new(params[:task]) 
+		@task = @milestone.tasks.new(params[:task]) 
 
 		if @task.save
-			redirect_to tasks_path(@task),:notice=>"Successfully created"
+			redirect_to project_milestone_task_path(@project,@milestone,@task),:notice=>"Successfully created"
 		else
 			render :action=>:new
 		end	
@@ -24,21 +27,37 @@ class TasksController < ApplicationController
 	end
 
 	def edit
-		@task = Task.find(params[:id])
+		@task = @milestone.tasks.find(params[:id])
 	end
 
 	def destroy
-		@task = Task.find(params[:id])
+		@task = @milestone.tasks.find(params[:id])
 		@task.destroy
-		redirect_to tasks_path,:notice=>"Successfully Destroy"
+		redirect_to project_milestone_tasks_path(@project,@milestone,@task),:notice=>"Successfully Destroy"
 	end
 	def update
-		@task = Task.find(params[:id])
+		@task = @milestone.tasks.find(params[:id])
 		if @task.update_attributes(params[:task])
-			redirect_to tasks_path(@task),:notice=>"Successfully updated"
+			redirect_to project_milestone_tasks_path(@project,@milestone,@task),:notice=>"Successfully updated"
 		else
 			render :action=>:edit
 		end	
+	end
+
+	def finish_task
+		@task =  Task.find(params[:id])
+		@task.set_finish
+		if @task.save
+			redirect_to project_milestone_tasks_path(@project,@milestone),:notice=>"Milestone is finish"
+		else
+			redirect_to project_milestone_tasks_path(@project,@milestone),:notice=>"Milestone is not finish"
+		end	
+	end
+
+	protected
+	def load_milestone
+		@project = Project.find(params[:project_id])
+		@milestone = @project.milestones.find(params[:milestone_id])
 	end
 
 end

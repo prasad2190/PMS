@@ -9,8 +9,15 @@
 <body>
 	<h1 class="hello">Project Management system</h1>
 	<div id="content">
-
-<%= yield %>
-</div>
+		<div class="navbar">
+			<ul class="nav">
+				<li><%= link_to "projects",projects_path%></li>
+				
+		
+				<li><%= link_to "users",users_path%></li>
+			</ul>		
+		</div>
+	<%= yield %>
+	</div>
 </body>
 </html>

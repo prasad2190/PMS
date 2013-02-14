@@ -1,0 +1,38 @@
+
+<%= form_for(@project) do |f| %>
+<% if @project.errors.present? %>
+<ul>
+<%@project.errors.full_messages.each do |message| %>
+<li><%= message%></li>
+<% end %>
+</ul>
+<% end %>
+<table class = "listing">
+ <tr>
+ 	<td><%= f.label name="Enter Name"%></td>
+	<td><%= f.text_field :name %></td>
+</tr>
+<tr>
+	<td><%= f.label name="Enter description"%></td>
+	<td><%= f.text_field :description %></td>
+</tr>
+<tr>
+		<td><%= f.label name="Enter start date"%></td>
+		<td><%= f.date_select :start_date %></td>
+</tr>
+<tr>
+		<td><%= f.label name="Enter end date"%></td>
+		<td><%= f.date_select :end_date %></td>
+</tr>
+<tr>
+		<td><%= f.label name="Enter status"%></td>
+		<td><%= f.select(:status, options_for_select(["Start","Inprocess","Finished"],:selected=>@project.status))%></td>
+</tr>
+<tr>
+	<%@users.each do |user| %>
+		<td><%= check_box_tag "project[user_ids][]",user.id,@project.users.include?(user) %></td><td><%= user.name %></td>
+	</tr>
+	<% end %>
+	<tr><td><%=	f.submit "Save" %></tr></td>
+<% end %>
+</table>

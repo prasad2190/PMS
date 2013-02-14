@@ -1,24 +1,7 @@
-<p>
-	ID
-	<%= @user.id %>
-</p>
-<br>
-<p>
-	Name
-	<%= @user.name %>
-</p>
-<br>
-<p>
-	Description
-	<%= @user.description %>
-</p>
-<br>
-<p>
-	start Date
-	<%=@user.start_date %>
-</p>
-<br>
-<p>
-	End Date
-	<%=@user.end_date %>
-</p>
+<table class="listing">
+	<tr><td>ID</td><td><%= @user.id %></td></tr>
+	<tr><td>Name</td><td><%= @user.name %></td></tr>
+<tr><td>Description</td><td><%= @user.description %></td></tr>
+<tr><td>start Date</td><td><%=@user.start_date %></td></tr>
+<tr><td>End Date</td><td><%=@user.end_date %></td></tr>
+</table>

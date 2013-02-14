@@ -17,5 +17,5 @@ class User < ActiveRecord::Base
     end
   end
 
-  attr_accessible :description, :end_date, :name, :start_date
+  attr_accessible :description, :end_date, :name, :start_date,:project_ids
 end

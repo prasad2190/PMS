@@ -8,6 +8,7 @@
 			<th>description</th>
 			<th>start_date</th>
 			<th>end_date</th>
+			<th>status</th>
 			
 		</tr>		
 	</thead>
@@ -19,14 +20,20 @@
 				<td><%= milestone.description%></td>
 				<td><%= milestone.start_date%></td>
 				<td><%= milestone.end_date%></td>
-				<td><%=link_to "show",milestone_path(milestone) %></td>
-				<td><%=link_to "edit",edit_milestone_path(milestone) %></td>
-				<td><%=link_to "Delete",milestone_path(milestone), :method=>'delete' %></td>
-
+				<td>
+					<%= milestone.status%>
+					<% if milestone.status != "finish" %>
+					<%=link_to "Finish Task",finish_task_project_milestone_path(@project,milestone) %>
+					<% end %>
+				</td>	
+				<td><%=link_to "show",project_milestone_path(@project,milestone) %></td>
+				<td><%=link_to "edit",edit_project_milestone_path(@project,milestone) %></td>
+				<td><%=link_to "Delete",project_milestone_path(@project,milestone), :method=>'delete' %></td>
+					<td><%=link_to "Task",project_milestone_tasks_path(@project,milestone) %></td>
 			</tr>
 			
 		<% end %>
-		<%=link_to "New Milestone",new_milestone_path %>
+		<%=link_to "New Milestone",new_project_milestone_path(@project) %>
 
 
 

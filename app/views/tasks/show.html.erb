@@ -1,24 +1,9 @@
-<p>
-	ID
-	<%= @task.id %>
-</p>
-<br>
-<p>
-	Name
-	<%= @task.name %>
-</p>
-<br>
-<p>
-	Description
-	<%= @task.description %>
-</p>
-<br>
-<p>
-	start Date
-	<%=@task.start_date %>
-</p>
-<br>
-<p>
-	End Date
-	<%=@task.end_date %>
-</p>
+<table class="listing">
+	<tr><td>ID</td><td><%= @task.id %></td></tr>
+	<tr><td>Name</td><td><%= @task.name %></td></tr>
+<tr><td>Description</td><td><%= @task.description %></td></tr>
+<tr><td>start Date</td><td><%=@task.start_date %></td></tr>
+<tr><td>End Date</td><td><%=@task.end_date %></td></tr>
+<tr><td>Status</td><td><%=@task.status %></td></tr>
+
+</table>

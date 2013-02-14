@@ -1,0 +1,15 @@
+ul.nav li{
+	display: inline-block;
+	background-color:cyan;
+/*	margin:2px; */
+	font-weight: bold;
+	font-size: 150%;
+	text-transform: capitalize;
+	border:solid #bbb 1px;
+}
+ul.nav li a{
+	text-decoration: none;
+	color:black;
+	padding: 10px;
+
+}

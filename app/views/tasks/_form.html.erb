@@ -1,0 +1,34 @@
+<table class="listing">
+<%= form_for([@project,@milestone,@task]) do |f| %>
+<% if @task.errors.present? %>
+<ul>
+<%@task.errors.full_messages.each do |message| %>
+<li><%= message%></li>
+<% end %>
+</ul>
+<% end %>
+<tr>
+	<td><%= f.label name="Enter Name"%></td>
+	<td><%= f.text_field :name %></td>
+</tr>
+<tr>
+	<td><%= f.label name="Enter description"%></td>
+	<td><%= f.text_field :description %></td>
+</tr>
+<tr>
+	<td><%= f.label name="Enter start date"%></td>
+	<td><%= f.date_select :start_date %></td>
+</tr>
+<tr>
+	<td><%= f.label name="Enter end date"%></td></tr>
+<td><%= f.date_select :end_date %></td>
+</tr>
+<tr>
+		<td><%= f.label name="Enter status"%></td>
+		<td><%= f.select(:status, options_for_select(["Start","Inprocess","Finished"],:selected=>@task.status))%></td>
+</tr>
+<tr><td><%= f.collection_select :milestone_id ,Milestone.all,:id,:name %><tr><td>
+	
+	<%=	f.submit "Save" %>
+<% end %>
+</table>

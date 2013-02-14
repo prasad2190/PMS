@@ -3,14 +3,37 @@ Pms::Application.routes.draw do
   #get 'milestones/index'
 
   # post 'projects/create'
-  resources :projects 
-  resources :milestones
-  resources :tasks
+  resources :projects  do
+    member do
+      get "finish_task"
+    end
+    resources :milestones do 
+      member do
+        get "finish_task"
+      end
+      resources :tasks do
+        member do
+          get "finish_task"
+        end
+      end
+    end
+  end
+
+    
+    
+      
+         
+        
+     
+   
+  # resources :milestones do
+  #   resources :tasks
+  # end
   resources :users
 
 ############
 
-
+root :to => 'projects#index'
 
 
 

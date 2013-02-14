@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
 	def new
 		@user = User.new
+		@projects = Project.all
 	end
 	
 	def show
@@ -14,10 +15,12 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(params[:user]) 
+		
 
 		if @user.save
 			redirect_to users_path(@user),:notice=>"Successfully created"
 		else
+			@projects = Project.all
 			render :action=>:new
 		end	
 
@@ -25,6 +28,7 @@ class UsersController < ApplicationController
 
 	def edit
 		@user = User.find(params[:id])
+		@projects = Project.all
 	end
 
 	def destroy
@@ -34,14 +38,13 @@ class UsersController < ApplicationController
 	end
 	def update
 		@user = User.find(params[:id])
+		params[:user][:project_ids] = [] if params[:user][:project_ids].blank?
 		if @user.update_attributes(params[:user])
-			redirect_to users_path(@project),:notice=>"Successfully updated"
+			redirect_to users_path(@user),:notice=>"Successfully updated"
 		else
+			@projects = Project.all
 			render :action=>:edit
 		end	
 	end
 
 end
-
-	
-
